@@ -1,4 +1,4 @@
-document.addEventListener(`DOMContentLoaded`, ()=> {
+        function fetchingFilms(){
         fetch(`http://localhost:3000/films/1`)
         .then(response => response.json())
         .then(movie => {
@@ -10,12 +10,11 @@ document.addEventListener(`DOMContentLoaded`, ()=> {
         .then(film => {
             displayFilmMenu(film);
         })
-
-    function displayMovieDetails(movie){
+//Displays the first movie details.
         const moviePoster = document.getElementById(`movie-poster`);
         moviePoster.src = movie.poster;
 
-        const movieTitle = document.getElementById(movie-title);
+        const movieTitle = document.getElementById(`movie-title`);
         movieTitle.textContent = movie.title;
 
         const movieRuntime = document.getElementById(`movie-runtime`);
@@ -25,11 +24,16 @@ document.addEventListener(`DOMContentLoaded`, ()=> {
         movieShowtime.textContent = `Showtime: ${movie.showtime}`;
 
         const movieAvailableTickets = document.getElementById(`movie-available-tickets`);
-        const availableTickets = movie.capacity - movie.tickets-sold;
-        movieAvailableTickets.textContent = `Available tickets: ${availableTickets}`;
-    }
+        const availableTicket = movie.capacity - movie.tickets-sold;
+        movieAvailableTickets.textContent = `Available tickets: ${availableTicket}`;
 
-    function displayFilmMenu(films) {
+        if (movieAvailableTickets < 0){
+            movie.innerHTML = `${movie.title} <span> SOLDOUT </span>`
+        }else{
+            movieAvailableTickets.innerText = `tickets: (${availableTicket})`;
+        };
+    
+//displays the other movies in a menu from where one click to get more details
         const filmMenu = document.getElementById(`films`);
 
         films.forEach(film =>{
@@ -42,13 +46,16 @@ document.addEventListener(`DOMContentLoaded`, ()=> {
             });
             filmMenu.appendChild(li);
         })
-    }
-    function buyTicket(){
-        const movieAvailableTickets = document.getElementById(`movie.available-tickets`);
-        const availableTickets = parseInt(movieAvailableTickets.textContent.split(` `)[2]);
+    
+//The buying tickets option.    
+        const btn = document.createElement("button");
+        btn.textContent = "Buy ticket";
+        const movieAvailableTicket = document.getElementById(`movie.available-tickets`);
+        const availableTickets = parseInt(movieAvailableTicket.textContent.split(` `)[2]);
 
         if(availableTickets > 0){
             movieAvailableTickets.textContent = `Available Tickets: ${availableTickets - 1}`;
         }
     }
-})
+fetchingFilms();
+
