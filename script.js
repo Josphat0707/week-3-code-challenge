@@ -1,10 +1,7 @@
-//url
 const API = "http://localhost:3000/films"
 document.addEventListener('DOMContentLoaded', () => {
-    //sidebar data
 
     const movies = document.getElementById('movies')
-    //main container data
 
     const cards = document.getElementById('row')
     const listdata = (films) => {
@@ -33,16 +30,14 @@ document.addEventListener('DOMContentLoaded', () => {
     //display content of clicked movie
     const displayMovieDetails = (films) => {
 
-        // const links = document.querySelector('.tags')
         const aticket = availableTickets(films)
-        //card div image display
+        
         const cardDiv = document.createElement('div')
         cardDiv.classList.add('card', 'col-5')
         const images = document.createElement('img')
         images.setAttribute("src", films.poster)
         images.src = films.poster
 
-        //add
         const ditDiv = document.createElement('div')
         ditDiv.classList.add('card', 'col-5')
         const movieName = document.createElement('h4')
