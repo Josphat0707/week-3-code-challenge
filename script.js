@@ -120,7 +120,7 @@ alert('Click OK to proceed with purchase');
     }
 
     const loadMovieList = () => {
-        fetch('https://kevinkkimutai.github.io/flatdango2/index.json')
+        fetch('http://localhost:3000/films')
             .then((res) => res.json())
             .then(data => {
                 data.forEach(films => {
